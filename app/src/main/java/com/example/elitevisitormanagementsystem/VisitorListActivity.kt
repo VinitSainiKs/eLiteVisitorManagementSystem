@@ -9,10 +9,10 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.LineNumberReader
 
 
 class VisitorListActivity : AppCompatActivity() {
-    lateinit var visitorList: ArrayList<VisitorResponse>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,18 +27,24 @@ class VisitorListActivity : AppCompatActivity() {
 
         networkAPI
             .getVisitorData("40B5AE35-86BE-E911-A97C-000D3AF06590")
-            .enqueue(object: Callback<VisitorResponse> {
-                override fun onFailure(call: Call<VisitorResponse>, t: Throwable) {
+            .enqueue(object: Callback<List<VisitorResponse>>{
+                override fun onFailure(call: Call<List<VisitorResponse>>, t: Throwable) {
                     t.printStackTrace()
                 }
 
-                override fun onResponse(call: Call<VisitorResponse>, response: Response<VisitorResponse>) {
-                    val search = response.body()
-                    println(search)
-                    visitorList = search as ArrayList<VisitorResponse>
-                    val adapter = VisitorAdaptor(this@VisitorListActivity,visitorList)
+                override fun onResponse(
+                    call: Call<List<VisitorResponse>>,
+                    response: Response<List<VisitorResponse>>
+                ) {
+
+                    println("success "+response.body())
+
+                    val adapter = VisitorAdaptor(this@VisitorListActivity,
+                        response.body() as ArrayList<VisitorResponse>
+                    )
                     rv_id.adapter = adapter
                     rv_id.layoutManager = LinearLayoutManager(this@VisitorListActivity)
+
                 }
 
             })

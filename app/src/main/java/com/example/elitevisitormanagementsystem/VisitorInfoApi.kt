@@ -9,7 +9,7 @@ interface VisitorInfoApi {
     @GET("/GetVisitors/EmployeeGuid")
     fun getVisitorData(
         @Query("EmployeeGuid") EmployeeGuid: String
-    ): Call<VisitorResponse>
+    ): Call<List<VisitorResponse>>
 
 
 }
