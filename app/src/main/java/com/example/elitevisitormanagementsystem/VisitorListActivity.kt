@@ -2,6 +2,7 @@ package com.example.elitevisitormanagementsystem
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_visitorlist.*
 import retrofit2.Call
@@ -9,7 +10,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.io.LineNumberReader
 
 
 class VisitorListActivity : AppCompatActivity() {
@@ -18,15 +18,18 @@ class VisitorListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_visitorlist)
 
+        val toolbar: Toolbar = toolbar
+        setSupportActionBar(toolbar)
+
         val retrofit = Retrofit.Builder()
             .baseUrl("http://192.168.1.106:8009/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        val networkAPI = retrofit.create(VisitorInfoApi::class.java)
+        val networkAPI = retrofit.create(VisitorAPI::class.java)
 
         networkAPI
-            .getVisitorData("40B5AE35-86BE-E911-A97C-000D3AF06590")
+            .getVisitorData(intent.getStringExtra("user-guid")!!)
             .enqueue(object: Callback<List<VisitorResponse>>{
                 override fun onFailure(call: Call<List<VisitorResponse>>, t: Throwable) {
                     t.printStackTrace()

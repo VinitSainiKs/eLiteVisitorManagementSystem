@@ -5,11 +5,21 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp"
+
         android:orientation="vertical"
         tools:context=".VisitorListActivity">
 
+    <androidx.appcompat.widget.Toolbar
+            app:title="Visitors"
+            android:background="#54BFE4"
+            app:titleTextColor="#fff"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"/>
+
+
     <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="10dp"
             android:id="@+id/rv_id"
             android:layout_width="match_parent"
             android:layout_height="match_parent">

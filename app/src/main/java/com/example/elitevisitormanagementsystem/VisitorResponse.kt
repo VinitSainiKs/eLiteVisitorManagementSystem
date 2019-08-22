@@ -2,6 +2,7 @@ package com.example.elitevisitormanagementsystem
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class VisitorResponse(
     @SerializedName("City")
@@ -40,4 +41,4 @@ data class VisitorResponse(
     val visitorMainId: String,
     @SerializedName("WhomToMeet")
     val whomToMeet: String
-)
+): Serializable
