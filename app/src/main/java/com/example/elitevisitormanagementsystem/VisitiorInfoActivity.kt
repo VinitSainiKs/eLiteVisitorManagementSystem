@@ -28,19 +28,19 @@ class VisitiorInfoActivity : AppCompatActivity() {
 
         val visitor: VisitorResponse = intent.getSerializableExtra("response") as VisitorResponse
 
-        textView_nop.text = visitor.name
-        textView_email.text = visitor.emailAddress
-        textView_meet.text = visitor.meet
-        textView_wtm.text = visitor.whomToMeet
-        textView_idt.text = visitor.inDateTime
-        textView_odt.text = visitor.outDateTime
-        textView_git.text = visitor.govtIdname
-        textView_gid.text = visitor.govtId
-        textView_status.text = visitor.status
+        userName.text = visitor.name
+        email.text = visitor.emailAddress
+        meet.text = visitor.meet
+        tv_whom_to_meet.text = visitor.whomToMeet
+        inDateTime.text = visitor.inDateTime
+        outDateTime.text = visitor.outDateTime
+        govtIdType.text = visitor.govtIdname
+        govtID.text = visitor.govtId
+        tv_status.text = visitor.status
 
         val imageAsBytes =
             Base64.decode(visitor.imageProfile.split(",")[1].toByteArray(), Base64.DEFAULT)
-        imageview2_id.setImageBitmap(
+        profileImage.setImageBitmap(
             BitmapFactory.decodeByteArray(
                 imageAsBytes,
                 0,
@@ -48,7 +48,7 @@ class VisitiorInfoActivity : AppCompatActivity() {
             )
         )
 
-        button_approve.setOnClickListener {
+        approveBtn.setOnClickListener {
             networkAPI.updateVisitorStatus(UpdateRequest("810100000", visitor.visitorId))
                 .enqueue(object : Callback<String> {
                     override fun onFailure(call: Call<String>, t: Throwable) {
@@ -57,8 +57,8 @@ class VisitiorInfoActivity : AppCompatActivity() {
 
                     override fun onResponse(call: Call<String>, response: Response<String>) {
                         if (response.body() == "Updated"){
-                            textView_status.text = "Approved"
-                            textView_status.setBackgroundColor(resources.getColor(R.color.green))
+                            tv_status.text = "Approved"
+                            tv_status.setTextColor(resources.getColor(R.color.green))
 
                         }
 
@@ -75,7 +75,7 @@ class VisitiorInfoActivity : AppCompatActivity() {
                 })
         }
 
-        button_reject.setOnClickListener {
+        rejectBtn.setOnClickListener {
 
             networkAPI.updateVisitorStatus((UpdateRequest("810100002", visitor.visitorId)))
                 .enqueue(object : Callback<String> {
@@ -85,8 +85,8 @@ class VisitiorInfoActivity : AppCompatActivity() {
 
                     override fun onResponse(call: Call<String>, response: Response<String>) {
                         if (response.body() == "Updated"){
-                            textView_status.text = "Rejected"
-                            textView_status.setBackgroundColor(resources.getColor(R.color.red))
+                            tv_status.text = "Rejected"
+                            tv_status.setTextColor(resources.getColor(R.color.red))
                         }
                         else
                             Toast.makeText(

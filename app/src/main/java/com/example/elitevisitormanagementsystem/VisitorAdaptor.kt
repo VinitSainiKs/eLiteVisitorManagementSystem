@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat.getColor
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.list_item.view.*
 
@@ -48,11 +49,13 @@ class VisitorAdaptor(val context: Context, val visitorList: ArrayList<VisitorRes
     inner class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
         val cardLayout : CardView = itemView.cardLayout
-        val imageview : ImageView = itemView.imageview_id
+        val imageview : ImageView = itemView.profileImage
 
 
         fun setData(visitor: VisitorResponse){
-            itemView.textview_id.text = visitor.name
+            itemView.userName.text = visitor.name
+            itemView.email.text = visitor.emailAddress
+            itemView.ic_status.setBackgroundColor(if(visitor.status == "Approved") context.resources.getColor(R.color.green) else context.resources.getColor(R.color.red))
         }
     }
 
