@@ -15,6 +15,7 @@
             app:titleTextColor="#fff"
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             android:layout_height="?attr/actionBarSize"/>
 
 

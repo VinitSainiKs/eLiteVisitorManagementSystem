@@ -12,7 +12,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class VisitiorInfoActivity : AppCompatActivity() {
+open class VisitiorInfoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,13 +56,17 @@ class VisitiorInfoActivity : AppCompatActivity() {
                     }
 
                     override fun onResponse(call: Call<String>, response: Response<String>) {
-                        if (response.body() == "Updated"){
+                        if (response.body() == "Updated") {
                             tv_status.text = "Approved"
                             tv_status.setTextColor(resources.getColor(R.color.green))
+                            Toast.makeText(
+                                this@VisitiorInfoActivity,
+                                "Status Approved Successfully",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            finish()
 
-                        }
-
-                        else
+                        } else
                             Toast.makeText(
                                 this@VisitiorInfoActivity,
                                 "Request Approval Failed",
@@ -84,11 +88,16 @@ class VisitiorInfoActivity : AppCompatActivity() {
                     }
 
                     override fun onResponse(call: Call<String>, response: Response<String>) {
-                        if (response.body() == "Updated"){
+                        if (response.body() == "Updated") {
                             tv_status.text = "Rejected"
                             tv_status.setTextColor(resources.getColor(R.color.red))
-                        }
-                        else
+                            Toast.makeText(
+                                this@VisitiorInfoActivity,
+                                "Status Rejected Successfully",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            finish()
+                        } else
                             Toast.makeText(
                                 this@VisitiorInfoActivity,
                                 "Request Rejection Failed",

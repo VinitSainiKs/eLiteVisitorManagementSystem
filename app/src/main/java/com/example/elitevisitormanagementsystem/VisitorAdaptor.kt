@@ -53,6 +53,7 @@ class VisitorAdaptor(val context: Context, val visitorList: ArrayList<VisitorRes
 
 
         fun setData(visitor: VisitorResponse){
+
             itemView.userName.text = visitor.name
             itemView.email.text = visitor.emailAddress
             itemView.ic_status.setBackgroundColor(if(visitor.status == "Approved") context.resources.getColor(R.color.green) else context.resources.getColor(R.color.red))

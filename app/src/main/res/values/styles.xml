@@ -12,7 +12,9 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:colorControlActivated">#fff</item>
         <item name="colorAccent">@color/colorAccent</item>
+
     </style>
 
 </resources>

@@ -15,9 +15,7 @@ interface VisitorAPI {
     fun updateVisitorStatus(@Body updateRequest: UpdateRequest): Call<String>
 
     @GET("/GetVisitors/EmployeeGuid")
-    fun getVisitorData(
-        @Query("EmployeeGuid") EmployeeGuid: String
-    ): Call<List<VisitorResponse>>
+    fun getVisitorData(@Query("EmployeeGuid") EmployeeGuid: String): Call<List<VisitorResponse>>
 
 
 }
