@@ -104,7 +104,7 @@ class VisitorListActivity : AppCompatActivity() {
                 println(it.size)
             }.toCollection(visitorList)
 
-            println()
+            adapter.notifyDataSetChanged()
 
         }
 
